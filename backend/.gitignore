@@ -1,0 +1,20 @@
+# Python cache files
+__pycache__/
+
+# Flask session files
+flask_session/
+
+# Environment and instance files
+myenv/
+.env
+
+# Python environment files
+*.pyc
+*.pyo
+*.pyd
+
+
+
+# OS-specific files
+.DS_Store
+Thumbs.db
