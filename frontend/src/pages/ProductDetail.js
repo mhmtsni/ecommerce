@@ -16,7 +16,7 @@ const ProductDetails = () => {
     const fetchProduct = async () => {
       try {
         const response = await fetch(
-          `http://127.0.0.1:5000/api/products/${id}`
+          `${process.env.REACT_APP_URL}/api/products/${id}`
         );
         const data = await response.json();
         setProduct(data);

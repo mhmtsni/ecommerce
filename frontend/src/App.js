@@ -19,12 +19,11 @@ function App() {
   const [clientSecret, setClientSecret] = useState("");
   const [dpmCheckerLink, setDpmCheckerLink] = useState("");
   const { totalPrice } = useContext(CartContext);
-
   const getIntent = async (cart) => {
     try {
       if (totalPrice > 0) {
         const res = await axios.post(
-          "http://localhost:5000/api/create-payment-intent",
+          `${process.env.REACT_APP_URL}/api/create-payment-intent`,
           {
             products: cart.products.map((item) => ({
               id: item.id,

@@ -4,12 +4,13 @@ import ProductCard from "./ProductCard";
 
 const ProductList = () => {
   const [products, setProducts] = useState([]);
-
   useEffect(() => {
     document.title = "Product List";
     const fetchProducts = async () => {
       try {
-        const response = await axios.get("http://127.0.0.1:5000/api/products");
+        const response = await axios.get(
+          `${process.env.REACT_APP_URL}/api/products`
+        );
         setProducts(response.data);
       } catch (error) {
         console.error("Error fetching products:", error);

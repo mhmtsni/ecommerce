@@ -20,7 +20,7 @@ export const CartProvider = ({ children }) => {
     async (currentCart, currentTotalPrice) => {
       try {
         await axios.post(
-          "http://localhost:5000/api/create-order-history",
+          `${process.env.REACT_APP_URL}/api/create-order-history`,
           {
             products: currentCart.products.map((item) => ({
               id: item.id,
@@ -45,7 +45,7 @@ export const CartProvider = ({ children }) => {
   const getOrderHistory = async () => {
     try {
       const { data } = await axios.get(
-        "http://localhost:5000/api/get-order-history",
+        `${process.env.REACT_APP_URL}/api/get-order-history`,
         {
           withCredentials: "true",
           headers: {
@@ -62,7 +62,7 @@ export const CartProvider = ({ children }) => {
   const addToCart = async (id) => {
     try {
       await axios.post(
-        "http://localhost:5000/api/add-cart",
+        `${process.env.REACT_APP_URL}/api/add-cart`,
         {
           id,
         },
@@ -79,9 +79,12 @@ export const CartProvider = ({ children }) => {
   };
   const getCart = async () => {
     try {
-      const { data } = await axios.get("http://localhost:5000/api/get-cart", {
-        withCredentials: "true",
-      });
+      const { data } = await axios.get(
+        `${process.env.REACT_APP_URL}/api/get-cart`,
+        {
+          withCredentials: "true",
+        }
+      );
       setCart(data);
     } catch (error) {
       throw error;
@@ -89,12 +92,15 @@ export const CartProvider = ({ children }) => {
   };
   const deleteItem = async (id) => {
     try {
-      await axios.delete(`http://localhost:5000/api/delete-from-cart/${id}`, {
-        withCredentials: "true",
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
+      await axios.delete(
+        `${process.env.REACT_APP_URL}/api/delete-from-cart/${id}`,
+        {
+          withCredentials: "true",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
       setCart((prevItems) => {
         if (prevItems && Array.isArray(prevItems.products)) {
           return {
@@ -112,7 +118,7 @@ export const CartProvider = ({ children }) => {
 
   const deleteCart = async () => {
     try {
-      await axios.delete("http://localhost:5000/api/delete-cart", {
+      await axios.delete(`${process.env.REACT_APP_URL}/api/delete-cart`, {
         withCredentials: "true",
         headers: {
           "Content-Type": "application/json",
@@ -128,7 +134,7 @@ export const CartProvider = ({ children }) => {
   const changeQuantity = async (id, increase) => {
     try {
       await axios.patch(
-        `http://localhost:5000/api/change-quantity/${id}`,
+        `${process.env.REACT_APP_URL}/api/change-quantity/${id}`,
         {
           increase,
         },

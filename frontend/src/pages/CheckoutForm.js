@@ -12,7 +12,7 @@ function Spinner() {
 
 export default function CheckoutForm({
   dpmCheckerLink,
-  returnUrl = "http://localhost:3000/complete",
+  returnUrl = `${window.location.origin}/complete`,
 }) {
   const stripe = useStripe();
   const elements = useElements();

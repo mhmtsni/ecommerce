@@ -8,7 +8,7 @@ export const AuthProvider = ({ children }) => {
     const checkSession = async () => {
       try {
         const { data } = await axios.get(
-          "http://localhost:5000/api/check-session",
+          `${process.env.REACT_APP_URL}/api/check-session`,
           {
             withCredentials: "true",
           }
@@ -29,7 +29,7 @@ export const AuthProvider = ({ children }) => {
   const register = async (username, email, password) => {
     try {
       const { data } = await axios.post(
-        "http://localhost:5000/api/register",
+        `${process.env.REACT_APP_URL}/api/register`,
         {
           username,
           email,
@@ -50,7 +50,7 @@ export const AuthProvider = ({ children }) => {
   const login = async (username, password) => {
     try {
       const { data } = await axios.post(
-        "http://localhost:5000/api/login",
+        `${process.env.REACT_APP_URL}/api/login`,
         {
           username,
           password,
@@ -68,7 +68,7 @@ export const AuthProvider = ({ children }) => {
     }
   };
   const logout = () => {
-    fetch("http://localhost:5000/api/logout", {
+    fetch(`${process.env.REACT_APP_URL}/api/logout`, {
       method: "POST",
       credentials: "include",
     })
